@@ -1135,6 +1135,245 @@ button {
   box-shadow: 0 0 8px var(--pink-glow);
 }
 
+.roster-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.roster-player {
+  font-size: 0.88rem;
+}
+
+.roster-player-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 8px;
+  margin: 0 -8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s var(--ease);
+}
+
+.roster-player-link:hover {
+  background: rgba(255, 45, 120, 0.08);
+}
+
+.roster-player-link:hover .player-name {
+  color: var(--pink-bright);
+}
+
+.player-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.captain-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gradient-pink);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.player-handle {
+  color: var(--gray-dim);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roster-subs {
+  padding-top: 12px;
+  border-top: 1px dashed var(--surface-line);
+}
+
+.subs-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-dim);
+  margin-bottom: 9px;
+}
+
+.roster-list--subs .player-name {
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.btn-roster-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--surface-line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.btn-roster-toggle:hover {
+  border-color: var(--pink);
+  color: var(--pink-bright);
+}
+
+.roster-toggle-label {
+  flex: 1;
+  text-align: left;
+}
+
+.roster-toggle-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 45, 120, 0.14);
+  color: var(--pink-bright);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+}
+
+.btn-roster-toggle .chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease);
+}
+
+.btn-roster-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.roster-panel {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  margin-top: -14px;
+  padding-top: 14px;
+  transition: max-height 0.35s var(--ease), margin-top 0.35s var(--ease), visibility 0s linear 0.35s;
+}
+
+.roster-panel.is-open {
+  margin-top: 0;
+  visibility: visible;
+  transition: max-height 0.35s var(--ease), margin-top 0.35s var(--ease), visibility 0s linear 0s;
+}
+
+.captain-badge--lg {
+  width: 26px;
+  height: 26px;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Player profile
+   ========================================================================== */
+.profile-section + .profile-section {
+  margin-top: 34px;
+  padding-top: 34px;
+  border-top: 1px solid var(--surface-line);
+}
+
+.profile-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.profile-bio {
+  color: var(--gray);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.profile-placeholder {
+  color: var(--gray-dim);
+  font-size: 0.92rem;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.facts-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.facts-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 2px;
+  background: var(--pink);
+}
+
+.teammates-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.teammate-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--surface-line);
+  color: var(--white);
+  font-size: 0.85rem;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.teammate-chip:hover {
+  border-color: var(--pink);
+  color: var(--pink-bright);
+  transform: translateY(-2px);
+}
+
+.teammate-chip .sub-tag {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-dim);
+}
+
 /* ==========================================================================
    Responsive
    ========================================================================== */

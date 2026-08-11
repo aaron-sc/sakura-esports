@@ -341,6 +341,63 @@
       return tier.toLowerCase().indexOf("main") !== -1 ? "tag tag--main" : "tag";
     }
 
+    function playerRow(p, gameId, teamName) {
+      var href = "player.html?p=" + encodeURIComponent(playerSlug(gameId, teamName, p.name));
+      return (
+        '<li class="roster-player">' +
+        '<a class="roster-player-link" href="' +
+        href +
+        '">' +
+        '<span class="player-name">' +
+        escapeHtml(p.name) +
+        (p.captain ? ' <span class="captain-badge" title="Captain">C</span>' : "") +
+        "</span>" +
+        (p.handle ? '<span class="player-handle">' + escapeHtml(p.handle) + "</span>" : "") +
+        "</a>" +
+        "</li>"
+      );
+    }
+
+    function rosterBody(t, gameId) {
+      if (!t.roster || !t.roster.length) {
+        return '<div class="roster-status"><span class="dot"></span>Roster announcement pending</div>';
+      }
+      var main =
+        '<ul class="roster-list">' +
+        t.roster
+          .map(function (p) {
+            return playerRow(p, gameId, t.name);
+          })
+          .join("") +
+        "</ul>";
+      var subs = "";
+      if (t.subs && t.subs.length) {
+        subs =
+          '<div class="roster-subs">' +
+          '<span class="subs-label">Subs</span>' +
+          '<ul class="roster-list roster-list--subs">' +
+          t.subs
+            .map(function (p) {
+              return playerRow(p, gameId, t.name);
+            })
+            .join("") +
+          "</ul>" +
+          "</div>";
+      }
+      var count = t.roster.length + (t.subs ? t.subs.length : 0);
+      return (
+        '<button class="btn-roster-toggle" type="button" aria-expanded="false">' +
+        '<span class="roster-toggle-label">View Roster</span>' +
+        '<span class="roster-toggle-count">' + count + "</span>" +
+        '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+        "</button>" +
+        '<div class="roster-panel">' +
+        main +
+        subs +
+        "</div>"
+      );
+    }
+
     function paint() {
       filterBar.querySelectorAll(".filter-btn").forEach(function (btn) {
         btn.classList.toggle("active", btn.getAttribute("data-filter") === activeFilter);
@@ -361,7 +418,7 @@
                 '">' +
                 t.tier +
                 "</span></div>" +
-                '<div class="roster-status"><span class="dot"></span>Roster announcement pending</div>' +
+                rosterBody(t, g.id) +
                 "</div>"
               );
             })
@@ -398,6 +455,25 @@
       else url.searchParams.set("game", activeFilter);
       history.replaceState(null, "", url);
       paint();
+    });
+
+    wrap.addEventListener("click", function (e) {
+      var btn = e.target.closest(".btn-roster-toggle");
+      if (!btn) return;
+      var panel = btn.nextElementSibling;
+      if (!panel) return;
+      var open = btn.getAttribute("aria-expanded") === "true";
+      if (open) {
+        panel.style.maxHeight = "0px";
+        panel.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.querySelector(".roster-toggle-label").textContent = "View Roster";
+      } else {
+        panel.classList.add("is-open");
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        btn.setAttribute("aria-expanded", "true");
+        btn.querySelector(".roster-toggle-label").textContent = "Hide Roster";
+      }
     });
   }
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player — Sakura Eclipse</title>
+  <meta name="description" content="Player profile — Sakura Eclipse esports." />
+  <meta name="theme-color" content="#050203" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="apple-touch-icon" href="assets/img/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+  <div class="bg-noise"></div>
+  <canvas id="petal-canvas"></canvas>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.png" alt="Sakura Eclipse emblem" />
+        <span class="brand-name">
+          <span class="full">SAKURA ECLIPSE</span>
+          <span class="sub">Esports</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#games">Games</a>
+        <a href="teams.html">Teams</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#" data-discord-link target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.369A19.79 19.79 0 0 0 15.885 3c-.211.375-.444.879-.608 1.278a18.27 18.27 0 0 0-5.487 0A12.6 12.6 0 0 0 9.182 3a19.74 19.74 0 0 0-4.435 1.371C1.6 8.845.892 13.208 1.245 17.51a19.9 19.9 0 0 0 5.993 3.03c.483-.657.913-1.355 1.284-2.09a12.9 12.9 0 0 1-2.023-.973c.17-.124.336-.253.497-.386a14.2 14.2 0 0 0 12.005 0c.162.133.328.262.497.386-.646.386-1.323.71-2.024.974.372.734.801 1.432 1.285 2.09a19.83 19.83 0 0 0 5.996-3.031c.414-4.917-.708-9.242-2.965-13.14ZM8.62 14.85c-1.007 0-1.834-.923-1.834-2.06 0-1.136.809-2.06 1.834-2.06 1.033 0 1.86.933 1.834 2.06 0 1.137-.8 2.06-1.834 2.06Zm6.775 0c-1.006 0-1.833-.923-1.833-2.06 0-1.136.808-2.06 1.833-2.06 1.034 0 1.86.933 1.834 2.06 0 1.137-.8 2.06-1.834 2.06Z"/></svg>
+          <span class="btn-label">Discord</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" id="player-hero">
+      <!-- populated by assets/js/player.js -->
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div id="player-content"><!-- populated by assets/js/player.js --></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="assets/img/logo.png" alt="Sakura Eclipse emblem" />
+            <span class="brand-name">
+              <span class="full">SAKURA ECLIPSE</span>
+              <span class="sub">Esports</span>
+            </span>
+          </a>
+          <p>A multi-title competitive esports organization — VALORANT, Rainbow Six Siege, CS2, Overwatch 2, and Rocket League.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#games">Games</a></li>
+              <li><a href="teams.html">Teams</a></li>
+              <li><a href="index.html#join">Join</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Titles</h4>
+            <ul>
+              <li><a href="teams.html?game=valorant">VALORANT</a></li>
+              <li><a href="teams.html?game=r6">Rainbow Six Siege</a></li>
+              <li><a href="teams.html?game=cs2">Counter-Strike 2</a></li>
+              <li><a href="teams.html?game=overwatch">Overwatch 2</a></li>
+              <li><a href="teams.html?game=rocketleague">Rocket League</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Sakura Eclipse. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="#" data-discord-link target="_blank" rel="noopener" aria-label="Sakura Eclipse Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.369A19.79 19.79 0 0 0 15.885 3c-.211.375-.444.879-.608 1.278a18.27 18.27 0 0 0-5.487 0A12.6 12.6 0 0 0 9.182 3a19.74 19.74 0 0 0-4.435 1.371C1.6 8.845.892 13.208 1.245 17.51a19.9 19.9 0 0 0 5.993 3.03c.483-.657.913-1.355 1.284-2.09a12.9 12.9 0 0 1-2.023-.973c.17-.124.336-.253.497-.386a14.2 14.2 0 0 0 12.005 0c.162.133.328.262.497.386-.646.386-1.323.71-2.024.974.372.734.801 1.432 1.285 2.09a19.83 19.83 0 0 0 5.996-3.031c.414-4.917-.708-9.242-2.965-13.14ZM8.62 14.85c-1.007 0-1.834-.923-1.834-2.06 0-1.136.809-2.06 1.834-2.06 1.033 0 1.86.933 1.834 2.06 0 1.137-.8 2.06-1.834 2.06Zm6.775 0c-1.006 0-1.833-.923-1.833-2.06 0-1.136.808-2.06 1.833-2.06 1.034 0 1.86.933 1.834 2.06 0 1.137-.8 2.06-1.834 2.06Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/player.js"></script>
+</body>
+</html>
