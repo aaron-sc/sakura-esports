@@ -3,9 +3,13 @@
    Single source of truth for games + rosters, consumed by index.html,
    teams.html, and player.html. Edit here to update the whole site.
 
+   Player fields: name, handle (required-ish — leave "" if unknown), and
+   optionally platform (e.g. "Twitch", shown as "handle (Platform)"),
+   captain (true shows a "C" badge), igl (true shows an "IGL" badge).
+
    To add facts/bio to a player later, just add fields to their object
    in a team's `roster` or `subs` array, e.g.:
-     { name: "zeil", handle: "@Z3ilTwitch", captain: true,
+     { name: "zeil", handle: "zeil_val", platform: "Twitch", captain: true,
        bio: "IGL, been with the org since season 1.",
        facts: ["Plays Jett/Chamber", "Also streams on Twitch"] }
    player.html picks up `bio` and `facts` automatically if present.
@@ -24,38 +28,39 @@ const GAMES = [
         name: "Sakura Eclipse White",
         tier: "Main Roster",
         roster: [
-          { name: "zeil", handle: "@Z3ilTwitch", captain: true },
-          { name: "Ukiy0", handle: "@Jadenx10_" },
-          { name: "gigaberry", handle: "@gigaberry406" }
+          { name: "zeil", handle: "zeil_val", platform: "Twitch", captain: true },
+          { name: "Ukiy0", handle: "Jaden", platform: "Twitch" },
+          { name: "gigaberry", handle: "gigaberry", platform: "Twitch", igl: true },
+          { name: "K11z", handle: "k11z", platform: "Twitch" },
+          { name: "Shadi", handle: "" }
         ],
-        subs: [
-          { name: "K11z", handle: "@k11z" },
-          { name: "solaine", handle: "@solaineval" }
-        ]
+        subs: [{ name: "solaine", handle: "solaine", platform: "Twitch" }]
       },
       {
         name: "Sakura Eclipse Black",
         tier: "Secondary Roster",
         roster: [
+          { name: "Tanuki", handle: "@TrashPanda_san", captain: true },
           { name: "Jaylen", handle: "@jay_kizzy35322" },
-          { name: "OnlyBuds", handle: "@OnlyBudsG" },
-          { name: "Tanuki", handle: "@TrashPanda_san" },
           { name: "TrexDuh", handle: "@lexahwa" },
-          { name: "Zigz", handle: "@tapecowboy" }
+          { name: "Zigz", handle: "@tapecowboy" },
+          { name: "Night", handle: "" }
         ],
-        subs: []
+        subs: [
+          { name: "Realitycheck", handle: "" },
+          { name: "OnlyBuds", handle: "@OnlyBudsG" }
+        ]
       },
       {
         name: "Sakura Eclipse Pink",
         tier: "Academy+ Roster",
         roster: [
-          { name: "Swaggy", handle: "@SwaggyLor" },
+          { name: "Swaggy", handle: "@SwaggyLor", captain: true },
           { name: "Royal", handle: "@official_r0yal1" },
-          { name: "Milk", handle: "@callm3milk" },
-          { name: "BlueTarget", handle: "BlueTarget|B.T." },
-          { name: "Flimseycrumb", handle: "" }
+          { name: "BlueTarget", handle: "BlueTarget|B.T.", igl: true },
+          { name: "Nut", handle: "" }
         ],
-        subs: [{ name: "Nut", handle: "" }]
+        subs: [{ name: "Milk", handle: "@callm3milk" }]
       }
     ]
   },
@@ -97,6 +102,11 @@ const GAMES = [
 ];
 
 const TOTAL_TEAMS = GAMES.reduce((sum, g) => sum + g.teams.length, 0);
+
+function formatHandle(p) {
+  if (!p.handle) return "";
+  return p.platform ? p.handle + " (" + p.platform + ")" : p.handle;
+}
 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, function (c) {

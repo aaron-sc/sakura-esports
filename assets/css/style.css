@@ -1289,6 +1289,26 @@ button {
   vertical-align: middle;
 }
 
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--pink);
+  background: rgba(255, 45, 120, 0.1);
+  color: var(--pink-bright);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.role-badge--lg {
+  padding: 4px 11px;
+  font-size: 0.8rem;
+}
+
 /* ==========================================================================
    Player profile
    ========================================================================== */

@@ -343,6 +343,7 @@
 
     function playerRow(p, gameId, teamName) {
       var href = "player.html?p=" + encodeURIComponent(playerSlug(gameId, teamName, p.name));
+      var handle = formatHandle(p);
       return (
         '<li class="roster-player">' +
         '<a class="roster-player-link" href="' +
@@ -351,8 +352,9 @@
         '<span class="player-name">' +
         escapeHtml(p.name) +
         (p.captain ? ' <span class="captain-badge" title="Captain">C</span>' : "") +
+        (p.igl ? ' <span class="role-badge" title="In-Game Leader">IGL</span>' : "") +
         "</span>" +
-        (p.handle ? '<span class="player-handle">' + escapeHtml(p.handle) + "</span>" : "") +
+        (handle ? '<span class="player-handle">' + escapeHtml(handle) + "</span>" : "") +
         "</a>" +
         "</li>"
       );

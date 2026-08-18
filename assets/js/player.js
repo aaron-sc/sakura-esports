@@ -41,10 +41,13 @@
       (player.captain
         ? ' <span class="captain-badge captain-badge--lg" title="Captain">C</span>'
         : "") +
+      (player.igl
+        ? ' <span class="role-badge role-badge--lg" title="In-Game Leader">IGL</span>'
+        : "") +
       "</h1>" +
       "<p>" +
       escapeHtml(team.name) +
-      (player.handle ? " · " + escapeHtml(player.handle) : "") +
+      (formatHandle(player) ? " · " + escapeHtml(formatHandle(player)) : "") +
       "</p>" +
       '<div style="margin-top:26px;">' +
       '<a class="btn btn-ghost" href="teams.html?game=' +
